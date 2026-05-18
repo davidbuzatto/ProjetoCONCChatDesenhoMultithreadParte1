@@ -1,5 +1,6 @@
-package chatmultithread;
+package chatmultithread.gui;
 
+import chatmultithread.ChatMultithread;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -253,7 +254,7 @@ public class JanelaServidor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblClientesConectados, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneMensagens, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addComponent(scrollPaneMensagens, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

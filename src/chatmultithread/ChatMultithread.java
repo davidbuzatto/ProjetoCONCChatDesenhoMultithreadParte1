@@ -1,7 +1,11 @@
 package chatmultithread;
 
+import chatmultithread.gui.JanelaCliente;
+import chatmultithread.gui.JanelaServidor;
+
 /**
- *
+ * Classe principal.
+ * 
  * @author Prof. Dr. David Buzatto
  */
 public class ChatMultithread {
