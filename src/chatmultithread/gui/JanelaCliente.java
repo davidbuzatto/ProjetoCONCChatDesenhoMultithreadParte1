@@ -33,7 +33,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  *
  * O botão "Enviar" permanece desabilitado até que a conexão seja estabelecida,
  * evitando acesso nulo ao fluxo de saída. Todas as atualizações na área de
- * mensagens são despachadas pela EDT via SwingUtilities#invokeLater.
+ * mensagens são despachadas pela EDT via SwingUtilities.invokeLater.
  *
  * @author Prof. Dr. David Buzatto
  */
@@ -129,10 +129,10 @@ public class JanelaCliente extends javax.swing.JFrame {
                         final String dados = linha;
                         
                         // despacha a alteração na EDT - mensagem crua
-                        SwingUtilities.invokeLater( () -> Utils.adicionarTextoNaoFormatado( dados + "\n", areaMensagens ) );
+                        //SwingUtilities.invokeLater( () -> Utils.adicionarTextoNaoFormatado( dados + "\n", areaMensagens ) );
                         
                         // despacha a alteração na EDT - analisa a mensagem
-                        /*SwingUtilities.invokeLater( () -> {
+                        SwingUtilities.invokeLater( () -> {
                             
                             try { 
                                 // faz a análise da mensagem e insere no JTextPane
@@ -146,7 +146,7 @@ public class JanelaCliente extends javax.swing.JFrame {
                             // pula linha
                             Utils.adicionarTextoNaoFormatado( "\n", areaMensagens );
                             
-                        });*/
+                        });
                         
                     }
                     
@@ -168,9 +168,9 @@ public class JanelaCliente extends javax.swing.JFrame {
     /**
      * Analisa a mensagem recebida e insere o conteúdo no JTextPane.
      * 
-     * @param mensagem Mensagem a ser analisada.
-     * @param textPane Container da mensagem.
-     * @param tipo O tipo de processamento.
+     * @param mensagem mensagem a ser analisada
+     * @param textPane container da mensagem
+     * @param tipo     o tipo de processamento
      * 
      * @throws ParseException Caso ocorra algum erro durante a análise da mensagem.
      */

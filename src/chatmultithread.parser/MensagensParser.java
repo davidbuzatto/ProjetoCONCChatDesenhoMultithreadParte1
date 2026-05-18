@@ -18,7 +18,7 @@ public class MensagensParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		NEG_ESQ=1, NEG_DIR=2, ITA_ESQ=3, ITA_DIR=4, COR_ESQ=5, COR_DIR=6, STRING=7, 
-		CHAR=8, NUM_HEX=9, DIG_HEX=10;
+		CHAR=8;
 	public static final int
 		RULE_inicio = 0, RULE_mensagem = 1, RULE_texto = 2;
 	private static String[] makeRuleNames() {
@@ -37,7 +37,7 @@ public class MensagensParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, "NEG_ESQ", "NEG_DIR", "ITA_ESQ", "ITA_DIR", "COR_ESQ", "COR_DIR", 
-			"STRING", "CHAR", "NUM_HEX", "DIG_HEX"
+			"STRING", "CHAR"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -93,10 +93,13 @@ public class MensagensParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class InicioContext extends ParserRuleContext {
-		public MensagemContext mensagem() {
-			return getRuleContext(MensagemContext.class,0);
-		}
 		public TerminalNode EOF() { return getToken(MensagensParser.EOF, 0); }
+		public List<MensagemContext> mensagem() {
+			return getRuleContexts(MensagemContext.class);
+		}
+		public MensagemContext mensagem(int i) {
+			return getRuleContext(MensagemContext.class,i);
+		}
 		public InicioContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -119,12 +122,25 @@ public class MensagensParser extends Parser {
 	public final InicioContext inicio() throws RecognitionException {
 		InicioContext _localctx = new InicioContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_inicio);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(6);
-			mensagem();
-			setState(7);
+			setState(7); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				{
+				setState(6);
+				mensagem();
+				}
+				}
+				setState(9); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 170L) != 0) );
+			setState(11);
 			match(EOF);
 			}
 		}
@@ -249,18 +265,18 @@ public class MensagensParser extends Parser {
 		enterRule(_localctx, 2, RULE_mensagem);
 		try {
 			int _alt;
-			setState(28);
+			setState(32);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NEG_ESQ:
 				_localctx = new MensagemNegritoContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(9);
+				setState(13);
 				match(NEG_ESQ);
-				setState(10);
+				setState(14);
 				mensagem();
-				setState(11);
+				setState(15);
 				match(NEG_DIR);
 				}
 				break;
@@ -268,11 +284,11 @@ public class MensagensParser extends Parser {
 				_localctx = new MensagemItalicoContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(13);
+				setState(17);
 				match(ITA_ESQ);
-				setState(14);
+				setState(18);
 				mensagem();
-				setState(15);
+				setState(19);
 				match(ITA_DIR);
 				}
 				break;
@@ -280,11 +296,11 @@ public class MensagensParser extends Parser {
 				_localctx = new MensagemCorContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(17);
+				setState(21);
 				match(COR_ESQ);
-				setState(18);
+				setState(22);
 				mensagem();
-				setState(19);
+				setState(23);
 				match(COR_DIR);
 				}
 				break;
@@ -292,23 +308,23 @@ public class MensagensParser extends Parser {
 				_localctx = new PartesContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(21);
-				texto();
 				setState(25);
+				texto();
+				setState(29);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1 ) {
 						{
 						{
-						setState(22);
+						setState(26);
 						mensagem();
 						}
 						} 
 					}
-					setState(27);
+					setState(31);
 					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+					_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 				}
 				}
 				break;
@@ -355,7 +371,7 @@ public class MensagensParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(30);
+			setState(34);
 			match(STRING);
 			}
 		}
@@ -371,29 +387,31 @@ public class MensagensParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\n!\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
-		"\u0002\u0007\u0002\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0001\u0001"+
+		"\u0004\u0001\b%\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0001\u0000\u0004\u0000\b\b\u0000\u000b\u0000\f\u0000"+
+		"\t\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
-		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
-		"\u0001\u0005\u0001\u0018\b\u0001\n\u0001\f\u0001\u001b\t\u0001\u0003\u0001"+
-		"\u001d\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0000\u0000\u0003\u0000"+
-		"\u0002\u0004\u0000\u0000!\u0000\u0006\u0001\u0000\u0000\u0000\u0002\u001c"+
-		"\u0001\u0000\u0000\u0000\u0004\u001e\u0001\u0000\u0000\u0000\u0006\u0007"+
-		"\u0003\u0002\u0001\u0000\u0007\b\u0005\u0000\u0000\u0001\b\u0001\u0001"+
-		"\u0000\u0000\u0000\t\n\u0005\u0001\u0000\u0000\n\u000b\u0003\u0002\u0001"+
-		"\u0000\u000b\f\u0005\u0002\u0000\u0000\f\u001d\u0001\u0000\u0000\u0000"+
-		"\r\u000e\u0005\u0003\u0000\u0000\u000e\u000f\u0003\u0002\u0001\u0000\u000f"+
-		"\u0010\u0005\u0004\u0000\u0000\u0010\u001d\u0001\u0000\u0000\u0000\u0011"+
-		"\u0012\u0005\u0005\u0000\u0000\u0012\u0013\u0003\u0002\u0001\u0000\u0013"+
-		"\u0014\u0005\u0006\u0000\u0000\u0014\u001d\u0001\u0000\u0000\u0000\u0015"+
-		"\u0019\u0003\u0004\u0002\u0000\u0016\u0018\u0003\u0002\u0001\u0000\u0017"+
-		"\u0016\u0001\u0000\u0000\u0000\u0018\u001b\u0001\u0000\u0000\u0000\u0019"+
-		"\u0017\u0001\u0000\u0000\u0000\u0019\u001a\u0001\u0000\u0000\u0000\u001a"+
-		"\u001d\u0001\u0000\u0000\u0000\u001b\u0019\u0001\u0000\u0000\u0000\u001c"+
-		"\t\u0001\u0000\u0000\u0000\u001c\r\u0001\u0000\u0000\u0000\u001c\u0011"+
-		"\u0001\u0000\u0000\u0000\u001c\u0015\u0001\u0000\u0000\u0000\u001d\u0003"+
-		"\u0001\u0000\u0000\u0000\u001e\u001f\u0005\u0007\u0000\u0000\u001f\u0005"+
-		"\u0001\u0000\u0000\u0000\u0002\u0019\u001c";
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0005\u0001\u001c\b\u0001"+
+		"\n\u0001\f\u0001\u001f\t\u0001\u0003\u0001!\b\u0001\u0001\u0002\u0001"+
+		"\u0002\u0001\u0002\u0000\u0000\u0003\u0000\u0002\u0004\u0000\u0000&\u0000"+
+		"\u0007\u0001\u0000\u0000\u0000\u0002 \u0001\u0000\u0000\u0000\u0004\""+
+		"\u0001\u0000\u0000\u0000\u0006\b\u0003\u0002\u0001\u0000\u0007\u0006\u0001"+
+		"\u0000\u0000\u0000\b\t\u0001\u0000\u0000\u0000\t\u0007\u0001\u0000\u0000"+
+		"\u0000\t\n\u0001\u0000\u0000\u0000\n\u000b\u0001\u0000\u0000\u0000\u000b"+
+		"\f\u0005\u0000\u0000\u0001\f\u0001\u0001\u0000\u0000\u0000\r\u000e\u0005"+
+		"\u0001\u0000\u0000\u000e\u000f\u0003\u0002\u0001\u0000\u000f\u0010\u0005"+
+		"\u0002\u0000\u0000\u0010!\u0001\u0000\u0000\u0000\u0011\u0012\u0005\u0003"+
+		"\u0000\u0000\u0012\u0013\u0003\u0002\u0001\u0000\u0013\u0014\u0005\u0004"+
+		"\u0000\u0000\u0014!\u0001\u0000\u0000\u0000\u0015\u0016\u0005\u0005\u0000"+
+		"\u0000\u0016\u0017\u0003\u0002\u0001\u0000\u0017\u0018\u0005\u0006\u0000"+
+		"\u0000\u0018!\u0001\u0000\u0000\u0000\u0019\u001d\u0003\u0004\u0002\u0000"+
+		"\u001a\u001c\u0003\u0002\u0001\u0000\u001b\u001a\u0001\u0000\u0000\u0000"+
+		"\u001c\u001f\u0001\u0000\u0000\u0000\u001d\u001b\u0001\u0000\u0000\u0000"+
+		"\u001d\u001e\u0001\u0000\u0000\u0000\u001e!\u0001\u0000\u0000\u0000\u001f"+
+		"\u001d\u0001\u0000\u0000\u0000 \r\u0001\u0000\u0000\u0000 \u0011\u0001"+
+		"\u0000\u0000\u0000 \u0015\u0001\u0000\u0000\u0000 \u0019\u0001\u0000\u0000"+
+		"\u0000!\u0003\u0001\u0000\u0000\u0000\"#\u0005\u0007\u0000\u0000#\u0005"+
+		"\u0001\u0000\u0000\u0000\u0003\t\u001d ";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
