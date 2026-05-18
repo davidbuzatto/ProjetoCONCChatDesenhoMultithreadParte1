@@ -39,12 +39,14 @@ public class MensagensVisitorImpl extends MensagensBaseVisitor<Void> {
     private Deque<Color> pilhaCor;
 
     public MensagensVisitorImpl( JTextPane textPane ) {
+        
         this.textPane = textPane;
         this.attrSet = new SimpleAttributeSet();
         this.pilhaCor = new ArrayDeque<>();
 
         // cor padrão na base da pilha: garante que peek() nunca retorne null
         this.pilhaCor.push( Color.BLACK );
+        
     }
 
     @Override
