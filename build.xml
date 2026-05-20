@@ -73,11 +73,9 @@
     
     <property name="gramatica" value="Mensagens"/>
     <property name="pacote" value="chatmultithread.parser"/>
-    <property name="saida" value="chatmultithread.parser"/>
+    <property name="saida" value="chatmultithread/parser"/>
     
     <target name="-pre-compile">
-        
-        <property name="caminhoCompleto" value="${src.gramatica.dir}/${gramatica}.g4"/>
         
         <echo level="info">********** ANTLR: Gerando analisadores... **********</echo>
         
@@ -85,7 +83,7 @@
               fork="true"
               classname="org.antlr.v4.Tool"
               maxmemory="500M">
-            <arg value="${caminhoCompleto}"/>
+            <arg value="${src.gramatica.dir}/${gramatica}.g4"/>
             <arg value="-package"/>
             <arg value="${pacote}"/>
             <arg value="-o"/>
