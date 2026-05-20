@@ -129,10 +129,10 @@ public class JanelaCliente extends javax.swing.JFrame {
                         final String dados = linha;
                         
                         // despacha a alteração na EDT - mensagem crua
-                        SwingUtilities.invokeLater( () -> Utils.adicionarTextoNaoFormatado( dados + "\n", areaMensagens ) );
+                        //SwingUtilities.invokeLater( () -> Utils.adicionarTextoNaoFormatado( dados + "\n", areaMensagens ) );
                         
                         // despacha a alteração na EDT - analisa a mensagem
-                        /*SwingUtilities.invokeLater( () -> {
+                        SwingUtilities.invokeLater( () -> {
                             
                             try { 
                                 // faz a análise da mensagem e insere no JTextPane
@@ -146,7 +146,7 @@ public class JanelaCliente extends javax.swing.JFrame {
                             // pula linha
                             Utils.adicionarTextoNaoFormatado( "\n", areaMensagens );
                             
-                        });*/
+                        });
                         
                     }
                     

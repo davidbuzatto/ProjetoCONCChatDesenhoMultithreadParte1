@@ -50,18 +50,6 @@ public class MensagensVisitorImpl extends MensagensBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitInicio( MensagensParser.InicioContext ctx ) {
-
-        // inicio pode conter mensagem+, então visita cada uma na ordem
-        for ( MensagensParser.MensagemContext mensagem : ctx.mensagem() ) {
-            visit( mensagem );
-        }
-
-        return null;
-
-    }
-
-    @Override
     public Void visitMensagemNegrito( MensagensParser.MensagemNegritoContext ctx ) {
 
         // incrementa antes de visitar os filhos: todo texto dentro do [b]...[/b]
